@@ -1,0 +1,26 @@
+{
+  "name": "hardhat-project",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "size": "hardhat size-contracts",
+    "clean": "hardhat clean",
+    "run:node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:cotiTestnet": "hardhat run scripts/deploy.ts --network cotiTestnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.19",
+    "hardhat-abi-exporter": "^2.11.0",
+    "hardhat-gas-reporter": "^2.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.2.0",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.13.5"
+  }
+}
