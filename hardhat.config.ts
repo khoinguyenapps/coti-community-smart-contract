@@ -31,6 +31,12 @@ const config: HardhatUserConfig = {
       accounts: [PRIVATE_KEY],
       timeout: 2_147_483_647,
     },
+    cotiMainnet: {
+      url: "https://mainnet.coti.io/rpc",
+      chainId: 2632500,
+      accounts: [PRIVATE_KEY],
+      timeout: 2_147_483_647,
+    },
   },
   abiExporter: {
     path: "data/abi",

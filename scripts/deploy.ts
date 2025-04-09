@@ -12,7 +12,7 @@ async function main() {
   const deploy = async () => {
     const IdeaVoting = await ethers.getContractFactory("IdeaVoting");
     const ideaVoting = await IdeaVoting.deploy(voteFee, {
-      gasLimit: 6_000_000,
+      gasLimit: 1_000_000,
     });
 
     console.table({

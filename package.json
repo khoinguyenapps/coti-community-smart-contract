@@ -7,7 +7,8 @@
     "clean": "hardhat clean",
     "run:node": "hardhat node",
     "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
-    "deploy:cotiTestnet": "hardhat run scripts/deploy.ts --network cotiTestnet"
+    "deploy:cotiTestnet": "hardhat run scripts/deploy.ts --network cotiTestnet",
+    "deploy:cotiMainnet": "hardhat run scripts/deploy.ts --network cotiMainnet"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
