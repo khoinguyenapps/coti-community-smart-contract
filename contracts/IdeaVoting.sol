@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.25;
 
-import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
-import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
+import { AccessControl } from "@openzeppelin/contracts/access/AccessControl.sol";
+import { Pausable } from "@openzeppelin/contracts/utils/Pausable.sol";
 
 contract IdeaVoting is AccessControl, Pausable {
     bytes32 private constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
     bytes32 private constant WITHDRAW_ROLE = keccak256("WITHDRAW_ROLE");
 
     uint256 public voteFee;
+    mapping(bytes32 ideaId => uint256) public ideaVotes;
 
     event Upvote(address indexed voter, string ideaId);
     event Withdraw(address indexed user, uint256 amount);
@@ -23,6 +24,11 @@ contract IdeaVoting is AccessControl, Pausable {
 
     function upvote(string memory ideaId) external payable whenNotPaused{
         require(msg.value == voteFee, "Insufficient fee");
+        require(bytes(ideaId).length > 0, "Invalid idea ID");
+
+        bytes32 ideaKey = keccak256(abi.encodePacked(ideaId));
+        ideaVotes[ideaKey] += 1;
+
         emit Upvote(_msgSender(), ideaId);
     }
 
@@ -42,6 +48,7 @@ contract IdeaVoting is AccessControl, Pausable {
         uint256 balance = address(this).balance;
         require(balance > 0, "No balance to withdraw");
         payable(_msgSender()).transfer(balance);
+
         emit Withdraw(_msgSender(), balance);
     }
 }
